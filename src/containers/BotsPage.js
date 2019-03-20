@@ -27,7 +27,8 @@ componentDidMount(){
 handleAddBot = (botObj) => {
   this.setState({
           myBots: [...this.state.myBots, botObj],
-          selectedBot: null
+          selectedBot: null,
+          searchTerm: ""
         })
       }
 
@@ -64,7 +65,9 @@ getUnAsBots=()=>{
     return (
       <div>
         <YourBotArmy bots={this.state.myBots} handleBotClick={this.handleRemoveBot}/>
-        <SearchBar onSearch={this.onSearch} text={this.state.searchTerm}/>
+        <SearchBar onSearch={this.onSearch} text={this.state.searchTerm}/> Search For Your Favorite Bot!
+        <br />
+        <br />
         {this.state.selectedBot=== null ? <BotCollection bots={this.getUnAsBots()} handleBotClick={this.handleBotSelect} /> :
       <BotSpecs bot={this.state.selectedBot} goBack={this.goBack} handleBotClick={this.handleAddBot}/>}
       </div>
