@@ -26,6 +26,12 @@ handleAddBot = (botObj) => {
         })
       }
 
+handleRemoveBot = (botObj) => {
+  this.setState({
+      myBots: this.state.myBots.filter(bot => bot.name !== botObj.name)
+    })
+}
+
 getUnAsBots=()=>{
     return this.state.allBots.filter(bot => !this.state.myBots.includes(bot))
   }
@@ -33,7 +39,7 @@ getUnAsBots=()=>{
   render() {
     return (
       <div>
-        <YourBotArmy bots={this.state.myBots} handleBotClick={this.handleAddBot}/>
+        <YourBotArmy bots={this.state.myBots} handleBotClick={this.handleRemoveBot}/>
         <BotCollection bots={this.getUnAsBots()} handleBotClick={this.handleAddBot}/>
       </div>
     );

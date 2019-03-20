@@ -14,7 +14,7 @@ constructor(props){
       <div className="ui segment inverted olive bot-army">
         <div className="ui five column grid">
           <div className="row bot-army-row">
-            {this.props.bots.map(botObj=> <BotCard key={botObj.id} bot={botObj} handleAddBot={this.props.handleAddBot}/>)}
+            {this.props.bots.map(botObj=> <BotCard key={botObj.id} bot={botObj} handleBotClick={this.props.handleBotClick}/>)}
             Your Bot Army
           </div>
         </div>
