@@ -25,22 +25,25 @@ componentDidMount(){
 }
 
 handleAddBot = (botObj) => {
+  !this.state.myBots.includes(botObj) ?
   this.setState({
           myBots: [...this.state.myBots, botObj],
           selectedBot: null,
           searchTerm: ""
-        })
+        }) : alert( "Cant Do That")
       }
 
 handleRemoveBot = (botObj) => {
   this.setState({
-      myBots: this.state.myBots.filter(bot => bot.name !== botObj.name)
+      myBots: this.state.myBots.filter(bot => bot.name !== botObj.name),
+      selectedBot: null,
+      searchTerm: ""
     })
 }
 
-getUnAsBots=()=>{
-    return this.state.allBots.filter(bot => !this.state.myBots.includes(bot) && bot.name.includes(this.state.searchTerm))
-  }
+// getUnAsBots=()=>{
+//     return this.state.allBots.filter(bot => !this.state.myBots.includes(bot) && bot.name.includes(this.state.searchTerm))
+//   }
 
   handleBotSelect = (botObj) =>{
     this.setState({
@@ -64,12 +67,12 @@ getUnAsBots=()=>{
   render() {
     return (
       <div>
-        <YourBotArmy bots={this.state.myBots} handleBotClick={this.handleRemoveBot}/>
+        <YourBotArmy bots={this.state.myBots} handleBotClick={this.handleBotSelect} bot={this.state.selectedBot}/>
         <SearchBar onSearch={this.onSearch} text={this.state.searchTerm}/> Search For Your Favorite Bot!
         <br />
         <br />
-        {this.state.selectedBot=== null ? <BotCollection bots={this.getUnAsBots()} handleBotClick={this.handleBotSelect} /> :
-      <BotSpecs bot={this.state.selectedBot} goBack={this.goBack} handleBotClick={this.handleAddBot}/>}
+        {this.state.selectedBot=== null ? <BotCollection bots={this.state.allBots} handleBotClick={this.handleBotSelect} /> :
+      <BotSpecs myBots= {this.state.myBots} bot={this.state.selectedBot} goBack={this.goBack} handleAddBot={this.handleAddBot} handleRemoveBot={this.handleRemoveBot}/>}
       </div>
     );
   }
