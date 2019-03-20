@@ -2,11 +2,8 @@ import React from "react";
 import BotCard from "../components/BotCard";
 
 class BotCollection extends React.Component {
-  constructor(){
-    super()
-    this.state = {
-
-    }
+  constructor(props){
+    super(props)
   }
 
   render(){

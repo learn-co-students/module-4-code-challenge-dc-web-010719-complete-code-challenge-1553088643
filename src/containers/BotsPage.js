@@ -41,9 +41,9 @@ handleRemoveBot = (botObj) => {
     })
 }
 
-// getUnAsBots=()=>{
-//     return this.state.allBots.filter(bot => !this.state.myBots.includes(bot) && bot.name.includes(this.state.searchTerm))
-//   }
+getUnAsBots=()=>{
+    return this.state.allBots.filter(bot => bot.name.includes(this.state.searchTerm))
+  }
 
   handleBotSelect = (botObj) =>{
     this.setState({
@@ -71,7 +71,7 @@ handleRemoveBot = (botObj) => {
         <SearchBar onSearch={this.onSearch} text={this.state.searchTerm}/> Search For Your Favorite Bot!
         <br />
         <br />
-        {this.state.selectedBot=== null ? <BotCollection bots={this.state.allBots} handleBotClick={this.handleBotSelect} /> :
+        {this.state.selectedBot=== null ? <BotCollection bots={this.getUnAsBots()} handleBotClick={this.handleBotSelect} /> :
       <BotSpecs myBots= {this.state.myBots} bot={this.state.selectedBot} goBack={this.goBack} handleAddBot={this.handleAddBot} handleRemoveBot={this.handleRemoveBot}/>}
       </div>
     );
